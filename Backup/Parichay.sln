@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parichay.MVC", "Parichay.MVC\Parichay.MVC.csproj", "{9E6B5CC4-EADE-492C-A914-8F725C22B486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parichay.Data", "Parichay.Data\Parichay.Data.csproj", "{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parichay.Security", "Parichay.Security\Parichay.Security.csproj", "{A1A4EDD5-CCA8-4077-B2C8-6707DC0E78F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E6B5CC4-EADE-492C-A914-8F725C22B486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6B5CC4-EADE-492C-A914-8F725C22B486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E6B5CC4-EADE-492C-A914-8F725C22B486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E6B5CC4-EADE-492C-A914-8F725C22B486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A4EDD5-CCA8-4077-B2C8-6707DC0E78F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A4EDD5-CCA8-4077-B2C8-6707DC0E78F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A4EDD5-CCA8-4077-B2C8-6707DC0E78F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A4EDD5-CCA8-4077-B2C8-6707DC0E78F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

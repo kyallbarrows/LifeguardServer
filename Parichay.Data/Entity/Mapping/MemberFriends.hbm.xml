@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberFriends, Parichay.Data" table="member_friends" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="Createdon" column="CreatedOn" access="field.pascalcase-underscore" not-null="true" type="System.DateTime"  insert="true" update="true"/>
+<property name="Isfavorite" column="IsFavorite" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+<!--<property name="Friendid" column="FriendId" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>-->
+<property name="Modifiedon" column="ModifiedOn" access="field.pascalcase-underscore" not-null="true" type="System.DateTime"  insert="true" update="true"/>
+<many-to-one name="MemberDetails"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+	<column name="UserId"/>
+</many-to-one>
+  <many-to-one name="Friendid"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="FriendId"/>
+  </many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+﻿@model IList<Parichay.Data.Entity.MemberRequests>
+
+<table class="tblAllBorders" style="width:320px;">
+<tr><th>Requests:</th></tr>
+<tr><td>
+            @foreach (var itm in Model)
+            {
+        <ul class="bullet-arrow">
+         @if (itm.Senderid.Id != ((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey)
+        {
+         <li> You've received a request from user @itm.Senderid.Givennm. Click @Html.ActionLink("Here", "AckRequest","Connect", new { id = itm.Guid },null) to respond.  </li>
+        }
+        else
+        {
+        <li> You've sent a request to user @itm.Recipientid.Givennm. Click @Html.ActionLink("Here", "AckRequest","Connect", new { id = itm.Guid },null) to view it.  </li>
+        }
+        </ul>
+            }
+            </td></tr>
+            </table>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberAbout, Parichay.Data" table="member_about" >
+
+<id name="Id" column="P_UserId" type="System.Int32">
+  <generator class="assigned"/>
+  <!--<generator class="foreign">
+    <param name="property">PUser</param>
+  </generator>-->
+</id>
+
+<property name="AboutText" column="ABOUT_TEXT" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+  <!--<many-to-one name="PUser" access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="P_UserId"/>
+  </many-to-one>-->
+</class>
+</hibernate-mapping>

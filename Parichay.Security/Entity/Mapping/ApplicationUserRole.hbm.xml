@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Parichay.Security"
+                   namespace="Parichay.Security.Entity">
+    <!--
+        NOTE: lazy="false" was added to fix a problem with NHibernate 1.2 Beta 2 where the property
+              Id is expected to be virtual. This seems to be because by default 1.2 assumes all objects
+              are proxy-ready.
+    -->
+    <class name="ApplicationUserRole" table="aspnet_applicationuserrole" lazy="false">
+        <composite-id>
+            <key-many-to-one name="Application" column="ApplicationId" />
+            <key-many-to-one name="User" column="UserId" />
+            <key-many-to-one name="Role" column="RoleId" />
+        </composite-id>
+    </class>
+
+    <!--
+        Queries used for support of base provider logic, which is assumes relationships are for a single
+        web application. Therefore, all these queries expect an application identifier to be specified.
+    -->
+    <query name="ApplicationUserRole.RemoveAppRoleReferences">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.Application.Id = ?
+              and appUserRole.Role.Id = ?
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.RemoveAppUserReferences">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.Application.Id = ?
+              and appUserRole.User.Id = ?
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.RemoveUserFromRole">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.Application.Id = ?
+              and appUserRole.User.Id = ?
+              and appUserRole.Role.Id = ?
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.IsUserInRole">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.Application.Id = ?
+              and appUserRole.User.Id = ?
+              and appUserRole.Role.Id = ?
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.GetRoleNamesForUser">
+        <![CDATA[
+            select role.Name
+              from Role as role,
+                   ApplicationUserRole as appUserRole
+             where appUserRole.Application.Id = ?
+               and appUserRole.User.Id = ?
+               and appUserRole.Role.Id = role.Id
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.GetUserNamesInRole">
+        <![CDATA[
+            select user.Name
+              from User as user,
+                   ApplicationUserRole as appUserRole
+             where appUserRole.Application.Id = ?
+               and appUserRole.Role.Id = ?
+               and appUserRole.User.Id = user.Id
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.FindUserNamesInRoleByUserLoweredName">
+        <![CDATA[
+            select user.Name
+              from User as user,
+                   ApplicationUserRole as appUserRole
+             where appUserRole.Application.Id = ?
+               and appUserRole.Role.Id = ?
+               and appUserRole.User.LoweredName like '?'
+        ]]>
+    </query>
+
+    <!--
+        Queries used for support of multi-web application implementations where a single management console
+        is used for all managed applications. This allows for use of a single pool of users/roles for multiple
+        applications.
+    -->
+    <query name="ApplicationUserRole.RemoveAllRoleReferences">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.Role.Id = ?
+        ]]>
+    </query>
+    <query name="ApplicationUserRole.RemoveAllUserReferences">
+        <![CDATA[
+             from ApplicationUserRole as appUserRole
+            where appUserRole.User.Id = ?
+        ]]>
+    </query>
+</hibernate-mapping>

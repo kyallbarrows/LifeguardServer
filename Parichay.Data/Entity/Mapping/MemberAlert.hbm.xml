@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberAlert, Parichay.Data" table="member_alert" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<version name="Version" column="Version" access="field.pascalcase-underscore" type="System.DateTime" />
+<property name="Ishidden" column="IsHidden" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="Message" column="Message" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<many-to-one name="AlertType"  access="field.pascalcase-underscore" not-null="false" outer-join="auto" insert="true" update="true">
+	<column name="Alert_type_Id"/>
+</many-to-one>
+<many-to-one name="PUser"  access="field.pascalcase-underscore" not-null="false" outer-join="auto" insert="true" update="true">
+	<column name="P_UserId"/>
+</many-to-one>
+
+
+</class>
+</hibernate-mapping>

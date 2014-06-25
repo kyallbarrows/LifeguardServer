@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Security.Entity.actions, Parichay.Security" table="aspnet_actions" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="ControllerName" column="ControllerName" access="field.pascalcase-underscore" not-null="true" type="System.String"  length="255" insert="true" update="true"/>
+<property name="ActionName" column="ActionName" access="field.pascalcase-underscore" not-null="true" type="System.String"  length="255" insert="true" update="true"/>
+
+<set name="FKroleactionsactions" cascade="none" inverse="true" lazy="true" access="field.pascalcase-underscore">
+	<key>
+		<column name="ActionId"/>
+	</key>
+	<one-to-many class="Parichay.Security.Entity.roleactions, Parichay.Security"/>
+</set>
+
+</class>
+    <query name="actions.FindAll">
+        <![CDATA[
+              from actions
+        ]]>
+    </query>
+    <query name="actions.byId">
+        <![CDATA[
+               FROM actions as ra
+               where ra.Id = ?
+              ]]>
+    </query>
+</hibernate-mapping>

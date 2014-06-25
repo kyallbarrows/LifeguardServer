@@ -1,0 +1,35 @@
+﻿@model Parichay.Data.Entity.MemberGroupmessages
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("PostMessage","Group",FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m=>m.Group.Id)
+            
+    <fieldset>
+        <table class="tblAllBorders">
+        <tr><th>Post Message:</th></tr>
+        <tr><td><div class="editor-field">
+            @Html.TextAreaFor(model => model.Text, 2, 58, null)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div></td></tr>
+@*        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Imagefilename)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Imagefilename)
+            @Html.ValidationMessageFor(model => model.Imagefilename)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Thumbnailfilename)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Thumbnailfilename)
+            @Html.ValidationMessageFor(model => model.Thumbnailfilename)
+        </div></td></tr>*@
+        <tr>
+        <td style="text-align:right"><input type="submit" value="Post" /></td>
+        </tr>
+        </table>
+    </fieldset>
+}

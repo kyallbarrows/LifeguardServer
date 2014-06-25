@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D7E9FA7-AEF9-4771-A083-0A7CCF0F8DBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Parichay.Data</RootNamespace>
+    <AssemblyName>Parichay.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.DynamicProxy">
+      <HintPath>..\Aadhaar.Web\Bin\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Aadhaar.Web\Bin\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Aadhaar.Web\Bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Aadhaar.MVC\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>..\Aadhaar.MVC\bin\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Aadhaar.Web\Bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.JetDriver">
+      <HintPath>..\Aadhaar.Web\Bin\NHibernate.JetDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernateProvider">
+      <HintPath>..\Aadhaar.Web\Bin\NHibernateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Components\AbstractProviderEntity.cs" />
+    <Compile Include="Entity\Components\EmailAddressAttribute.cs" />
+    <Compile Include="Entity\Components\PairIdComponent.cs" />
+    <Compile Include="Entity\Entity\MemberAlert.cs" />
+    <Compile Include="Entity\Entity\Alerttype.cs" />
+    <Compile Include="Entity\Entity\Application.cs" />
+    <Compile Include="Entity\Entity\MemberFriends.cs" />
+    <Compile Include="Entity\Entity\MemberGroupmembers.cs" />
+    <Compile Include="Entity\Entity\MemberGroupmessages.cs" />
+    <Compile Include="Entity\Entity\MemberGroups.cs" />
+    <Compile Include="Entity\Entity\MemberInvitations.cs" />
+    <Compile Include="Entity\Entity\MemberRequests.cs" />
+    <Compile Include="Entity\Entity\MemberBlog.cs" />
+    <Compile Include="Entity\Entity\MemberUpload.cs" />
+    <Compile Include="Entity\Entity\LookupCountry.cs" />
+    <Compile Include="Entity\Entity\MemberMessages.cs" />
+    <Compile Include="Entity\Entity\Log.cs" />
+    <Compile Include="Entity\Entity\LookupInvitationType.cs" />
+    <Compile Include="Entity\Entity\MemberAbout.cs" />
+    <Compile Include="Entity\Entity\MemberDetails.Generated.cs" />
+    <Compile Include="Entity\Entity\User.cs" />
+    <Compile Include="Helper\DateTimeExtension.cs" />
+    <Compile Include="Helper\NHibernateHelper.cs" />
+    <Compile Include="Helper\NHibernateProviderEntityHelper.cs" />
+    <Compile Include="Helper\PropertyInspector.cs" />
+    <Compile Include="OneZeroType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\AssemblyUtil.cs" />
+    <Compile Include="Util\BusinessException.cs" />
+    <Compile Include="Util\ConfigurationUtil.cs" />
+    <Compile Include="Util\ExceptionUtil.cs" />
+    <Compile Include="Util\KeyCreator.cs" />
+    <Compile Include="ViewModel\DbEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\Mapping\User.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\Mapping\Application.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\Mapping\MemberAlert.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\Alerttype.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberFriends.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberGroupmembers.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberGroupmessages.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberGroups.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberInvitations.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberRequests.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberUploads.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberMessage.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\Log.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\LookupRequestType.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberDetails.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\Mapping\Country.hbm.xml" />
+    <EmbeddedResource Include="Entity\Mapping\MemberAbout.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\Mapping\MemberBlog.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

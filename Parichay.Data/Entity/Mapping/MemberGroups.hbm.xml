@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberGroups, Parichay.Data" table="member_groups" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+  <property name="Name" column="Name" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+  <property name="About" column="About" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+  <property name="Url" column="Url" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+  <property name="OwnerId" column="OwnerId" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+  <property name="Visibility" column="Visibility" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+  <property name="Isautoapprove" column="IsAutoApprove" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+  <property name="Canmembersinvite" column="CanMembersInvite" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+  <property name="Createdon" column="CreatedOn" access="field.pascalcase-underscore" not-null="false" type="System.DateTime"  insert="true" update="true"/>
+  <property name="Modifiedon" column="ModifiedOn" access="field.pascalcase-underscore" not-null="false" type="System.DateTime"  insert="true" update="true"/>
+  <property name="AvatarId" column="AvatarId" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+
+  <bag name="FKGrpMsgGrp" cascade="none" inverse="true" lazy="true" access="field.pascalcase-underscore">
+	<key>
+		<column name="GroupId"/>
+	</key>
+	<one-to-many class="Parichay.Data.Entity.MemberGroupmessages, Parichay.Data"/>
+</bag>
+  <bag name="FKGrpMmbrsGrp" cascade="none" inverse="true" lazy="true" access="field.pascalcase-underscore">
+	<key>
+		<column name="GroupId"/>
+	</key>
+	<one-to-many class="Parichay.Data.Entity.MemberGroupmembers, Parichay.Data"/>
+</bag>
+
+</class>
+</hibernate-mapping>

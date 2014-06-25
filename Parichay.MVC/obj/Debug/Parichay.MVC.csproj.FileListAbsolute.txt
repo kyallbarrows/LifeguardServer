@@ -1,0 +1,9 @@
+C:\Development\LifeguardServer\Parichay.MVC\obj\Debug\Parichay.MVC.csprojResolveAssemblyReference.cache
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.MVC.dll
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.MVC.pdb
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.Data.dll
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.Security.dll
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.Data.pdb
+C:\Development\LifeguardServer\Parichay.MVC\bin\Parichay.Security.pdb
+C:\Development\LifeguardServer\Parichay.MVC\obj\Debug\Parichay.MVC.dll
+C:\Development\LifeguardServer\Parichay.MVC\obj\Debug\Parichay.MVC.pdb

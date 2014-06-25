@@ -1,0 +1,62 @@
+﻿@model Parichay.MVC.Models.UserHomeModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+<link href="@Url.Content("~/Content/Styles/jquery.ui.css")" rel="stylesheet" type="text/css" />
+
+}
+
+@section Scripts
+{
+<script src="@Url.Content("~/Content/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+
+        $('DIV.modalWin').dialog({ autoOpen: false }); // or hide in css
+        //$('DIV.modalWin').modal();
+
+
+        $('a.openModal').click(function () {
+            var divNm = '#' + $(this).attr('data-name');
+            $(divNm).dialog('open');
+        });
+
+        $('DIV.rplyBox').toggle('slow');
+
+        $('a.showreply').click(function () {
+            var divNm = '#' + $(this).attr('data-name');
+            $(divNm).toggle('slow');
+        });
+    });
+</script>
+}
+<h2>My Messages</h2>
+@*@Html.Partial("BO/txtStatus")*@
+@if (Model.myMessages != null)
+{
+ <div class="cmtMainBox">
+     <div class="cmtHeading"><span>My Messages:</span></div>
+@foreach (Parichay.Data.Entity.MemberMessage msg in Model.myMessages)
+{
+@Html.Partial("BO/msg", msg);
+}
+</div>
+}
+<br />
+<br />
+@Html.Partial("Post", new Parichay.Data.Entity.MemberMessage() { Recipient = new Parichay.Data.Entity.MemberDetails() { Id = ((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey } })
+
+@if ((Model.myFriendMsg != null)&&(Model.myFriendMsg.Count!=0))
+{
+<br /><br />
+    <div class="cmtMainBox">
+     <div class="cmtHeading"><span>Friend's Messages (@Html.ActionLink("My Friends", "Index", "Friend")):</span></div>
+@foreach (Parichay.Data.Entity.MemberMessage msg in Model.myFriendMsg)
+{
+@Html.Partial("BO/msg", msg);
+}
+</div>
+}

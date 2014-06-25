@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h2>Error</h2>
+    <p>Sorry, an Error has occured while processing your request.</p>
+     @if (TempData["message"] != null) { 
+    <h2 style="color:Red">@Html.Encode(TempData["message"])</h2>
+   } 

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Parichay.Data.Entity.Log>
+
+
+@{
+    ViewBag.Title = "UserLogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<fieldset>
+<legend><h2>System Logs</h2></legend>
+<table class="tblAllBorders">
+<tr><td colspan="6"> @Html.Partial("pg",Model.Count())</td></tr>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Logger
+        </th>
+        <th>
+            Level
+        </th>
+        <th>
+            Message
+        </th>
+        <th>
+            Thread
+        </th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thread)
+        </td>
+        <td>@using (Html.BeginForm("DeleteLogEntry", "Admin", FormMethod.Post))
+            {<input id="deleteLogId" type="hidden" name="deleteLogId" value="@item.Id" /><input type="submit" value="Del" class="button" onclick="if(!confirm('This action will Permanently Delete this log entry. Are you sure you would like to proceed for deletion?')){return false;}" />}</td>
+    </tr>
+}
+</table>
+</fieldset>
+
+
+
+

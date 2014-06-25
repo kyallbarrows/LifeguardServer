@@ -1,0 +1,59 @@
+﻿@model Parichay.Data.Entity.MemberRequests
+
+@{
+    ViewBag.Title = "Invite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Parichay.AppConstants.RequestTypes type = (Parichay.AppConstants.RequestTypes)Model.Type;
+}
+
+<h2>Send a @type.ToString() Request to Member</h2>
+
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <table class="tblAllBorders">
+        <tr><th style="width:100px">
+          Add your personal  Message to the request:
+        
+        </th><td>
+        @Html.HiddenFor(model=>model.TargetPageid)
+        @Html.HiddenFor(model=>model.Recipientid.Id)
+        @Html.HiddenFor(model => model.Senderid)
+            @Html.TextAreaFor(model => model.UserMessage, 5, 50,null)
+            @Html.ValidationMessageFor(model => model.UserMessage)
+        </td></tr>
+
+
+        <tr><th>
+            @Html.LabelFor(model => model.Createdate)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.Createdate)
+            @Html.ValidationMessageFor(model => model.Createdate)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.Version)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.Version)
+            @Html.ValidationMessageFor(model => model.Version)
+        </td></tr>
+        <tr><td colspan="2" style="text-align:right"><input type="submit" value="Send Request" /> </td></tr>
+        </table>
+    </fieldset>
+}
+
+<br /><br />
+
+<table class="tblAllBorders">
+<tr><th colspan="5">My Previous Invitations:</th></tr>
+<tr><th>Id </th> <th>Email </th><th>Unique Key </th><th>Sent Date </th><th>Joined UserId</th></tr>
+@foreach (var itm in Model.MyRequests)
+{
+    <tr><td>@itm.Id</td><td>@itm.Email</td><td>@itm.Guid</td><td>@itm.Createdate</td><td>@itm.Recipientid.Givennm</td></tr>
+}
+</table>

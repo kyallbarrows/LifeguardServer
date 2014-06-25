@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.Alerttype, Parichay.Data" table="lookup_alerttype" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="Paramcount" column="ParamCount" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+<property name="SupportEmail" column="support_email" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Template" column="Template" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Name" column="Name" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+
+<set name="FKAlertAlerttype" cascade="none" inverse="true" lazy="true" access="field.pascalcase-underscore">
+	<key>
+		<column name="Alert_type_Id"/>
+	</key>
+	<one-to-many class="Parichay.Data.Entity.MemberAlert, Parichay.Data"/>
+</set>
+
+</class>
+</hibernate-mapping>

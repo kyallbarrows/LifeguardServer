@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Parichay.Security"
+                   namespace="Parichay.Security.Entity">
+    <!--
+        NOTE: lazy="false" was added to fix a problem with NHibernate 1.2 Beta 2 where the property
+              Id is expected to be virtual. This seems to be because by default 1.2 assumes all objects
+              are proxy-ready.
+    -->
+    <class name="ApplicationRole" table="aspnet_applicationrole" lazy="false">
+        <composite-id>
+            <key-many-to-one name="Application" column="ApplicationId" />
+            <key-many-to-one name="Role" column="RoleId" />
+        </composite-id>
+    </class>
+
+    <!--
+        Queries used for support of base provider logic, which is assumes relationships are for a single
+        web application. Therefore, in cases where lists are the result they are assumed for a given
+        application identifier.
+    -->
+    <query name="ApplicationRole.GetRoleNames">
+        <![CDATA[
+            select appRole.Role.Name
+              from ApplicationRole as appRole
+             where appRole.Application.Id = ?
+        ]]>
+    </query>
+</hibernate-mapping>

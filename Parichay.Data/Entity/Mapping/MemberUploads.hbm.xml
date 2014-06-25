@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberUploads, Parichay.Data" table="member_uploads" >
+
+<id name="Id" column="UNIQ_N" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="SectionNo" column="SECTION_NO" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Rank" column="RANK" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="FileContentT" column="FILE_CONTENT_T" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="FileSize" column="FILE_SIZE" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="CuniqN" column="CUNIQ_N" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="CoUniqN" column="CO_UNIQ_N" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="FileDetail" column="FILE_DETAIL" access="field.pascalcase-underscore" not-null="false" type="System.Byte[]"  insert="true" update="true"/>
+<property name="ConfC" column="CONF_C" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="Attachmt" column="ATTACHMT" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="CreateD" column="CREATE_D" access="field.pascalcase-underscore" not-null="false" type="System.DateTime"  insert="true" update="true"/>
+<property name="PUniqN" column="P_UNIQ_N" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+  <many-to-one name="Owner"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="P_UserId"/>
+  </many-to-one>
+
+</class>
+</hibernate-mapping>

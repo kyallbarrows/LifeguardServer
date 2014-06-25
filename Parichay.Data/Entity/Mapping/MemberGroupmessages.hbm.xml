@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberGroupmessages, Parichay.Data" table="member_groupmessages" >
+
+<id name="Id" column="MessageId" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="Imagefilename" column="ImageFilename" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Createdon" column="CreatedOn" access="field.pascalcase-underscore" not-null="true" type="System.DateTime"  insert="true" update="true"/>
+<property name="Modifiedon" column="ModifiedOn" access="field.pascalcase-underscore" not-null="true" type="System.DateTime"  insert="true" update="true"/>
+<property name="Source" column="Source" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+<property name="Type" column="Type" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+<property name="Isprivate" column="IsPrivate" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+<property name="Text" column="Text" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+<property name="Thumbnailfilename" column="ThumbnailFilename" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<many-to-one name="Message"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="false" update="false">
+	<column name="MessageId"/>
+</many-to-one>
+<many-to-one name="Group"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+	<column name="GroupId"/>
+</many-to-one>
+<many-to-one name="Sender"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+	<column name="SenderId"/>
+</many-to-one>
+<many-to-one name="Recipient"  access="field.pascalcase-underscore" not-null="false" outer-join="auto" insert="true" update="true">
+	<column name="RecipientId"/>
+</many-to-one>
+  <many-to-one name="Parent" access="field.pascalcase-underscore" not-null="false" not-found="ignore"  update="true" insert="true">
+    <column name="Parentid"></column>
+  </many-to-one>
+  <set name="Children" cascade="all-delete-orphan"
+    inverse="true" access="field.pascalcase-underscore">
+    <key column="Parentid"/>
+    <one-to-many class="Parichay.Data.Entity.MemberGroupmessages, Parichay.Data" not-found="ignore" />
+  </set>
+</class>
+</hibernate-mapping>

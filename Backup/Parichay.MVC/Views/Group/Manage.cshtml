@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Parichay.Data.Entity.MemberGroups>
+
+@{
+    ViewBag.Title = "Manage";
+}
+<fieldset>
+<legend><h2>Manage All User Groups</h2></legend>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="tblAllBorders">
+    <tr>
+
+        <th>
+            Name
+        </th>
+        <th>
+            About
+        </th>
+        <th>
+            Url
+        </th>
+                <th>
+            OwnerId
+        </th>
+                <th>Details</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+         <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.About)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.OwnerId)
+        </td>
+        <td>
+        <table class="tblCompact">
+        <tr>
+        <th>
+            Createdon
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Createdon)
+        </td>
+        </tr><tr><th>
+            Modifiedon
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modifiedon)
+        </td></tr><tr><th>
+            bIsautoapprove
+        </th>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.bIsautoapprove)
+        </td></tr><tr><th>
+            bIsVisible
+        </th>
+                <td>
+            @Html.CheckBoxFor(modelItem => item.bIsVisible)
+        </td></tr><tr><th>
+            bCanmembersinvite
+        </th>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.bCanmembersinvite)
+        </td>
+        </tr>
+        </table>
+        </td>
+                
+        <td>
+            @Html.ActionLink("Acquire", "Acquire", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Update", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Destroy", new { id=item.Id })
+        </td>
+    </tr>
+}
+<tr><td colspan="6"><span style="color:Red">If needed, Super Admin/Admin can "Acquire" the group to Edit. Or Destroy the group data completely.</span></td></tr>
+</table>
+</fieldset>
+
+

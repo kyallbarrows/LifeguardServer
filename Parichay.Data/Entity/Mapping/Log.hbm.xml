@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.Log, Parichay.Data" table="system_log" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+  <property name="Date" column="Date" access="field.pascalcase-underscore" not-null="true" type="System.DateTime"  insert="true" update="true"/>
+  <property name="Level" column="Level" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+  <property name="Logger" column="Logger" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+  <property name="Message" column="Message" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+  <property name="Thread" column="Thread" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,59 @@
+﻿@model Parichay.Data.Entity.MemberGroups
+
+
+@using (Html.BeginForm("Create","Group",FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+       <h2><legend>Create A User Group</legend></h2>
+       <table class="tblAllBorders">
+               <tr><th><div class="editor-label">
+               @Html.Hidden("Ownerid",(((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey))
+            @Html.LabelFor(model => model.Name)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Url)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Url)
+            @Html.ValidationMessageFor(model => model.Url)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.About)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.About)
+            @Html.ValidationMessageFor(model => model.About)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bIsautoapprove)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bIsautoapprove)
+            @Html.ValidationMessageFor(model => model.bIsautoapprove)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bIsVisible)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bIsVisible)
+            @Html.ValidationMessageFor(model => model.bIsVisible)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bCanmembersinvite)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bCanmembersinvite)
+            @Html.ValidationMessageFor(model => model.bCanmembersinvite)
+        </div></td></tr>
+        </table>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

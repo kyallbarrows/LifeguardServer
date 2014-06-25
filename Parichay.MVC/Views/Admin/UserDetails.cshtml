@@ -1,0 +1,173 @@
+﻿@model Parichay.MVC.Models.EditUserModel
+
+@{
+    ViewBag.Title = "Edit User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit User Details</h2>
+
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>User's Information</legend>
+        <table class="tblAllBorders">
+                <tr><th>
+            @Html.LabelFor(model => model.userInfo.id)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.id)
+            
+        </td></tr>
+                        <tr><th>
+            @Html.LabelFor(model => model.userInfo.name)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.name)
+           @* @Html.HiddenFor(model => model.userInfo.name)*@
+        </td></tr>
+                <tr><th>
+            @Html.LabelFor(model => model.userInfo.email)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.email)
+           @* @Html.HiddenFor(model => model.userInfo.email)*@
+        </td></tr>
+
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.description)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.description)
+            @Html.ValidationMessageFor(model => model.userInfo.description)
+        </td></tr>
+
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.comments)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.comments)
+            @Html.ValidationMessageFor(model => model.userInfo.comments)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.isApproved)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.isApproved)
+            @Html.ValidationMessageFor(model => model.userInfo.isApproved)
+        </td></tr>
+
+        
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.lastActivityDate)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.lastActivityDate)
+            @Html.ValidationMessageFor(model => model.userInfo.lastActivityDate)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.lastLoginDate)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.lastLoginDate)
+            @Html.ValidationMessageFor(model => model.userInfo.lastLoginDate)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.lastLockedOutDate)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.lastLockedOutDate)
+            @Html.ValidationMessageFor(model => model.userInfo.lastLockedOutDate)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.lastPasswordChangeDate)
+        
+        </th><td>
+            @Html.DisplayFor(model => model.userInfo.lastPasswordChangeDate)
+            @Html.ValidationMessageFor(model => model.userInfo.lastPasswordChangeDate)
+        </td></tr>
+        <tr><td>Update User's Info:</td><td><input type="submit" name="submitButton" value="Update" /></td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.isLockedOut)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.isLockedOut)
+            @Html.ValidationMessageFor(model => model.userInfo.isLockedOut)
+        </td></tr>
+
+        
+
+        <tr><td>Unlock User:</td><td><input type="submit" name="submitButton" value="UnlockUser" /></td></tr>
+                <tr><th>
+            @Html.LabelFor(model => model.userInfo.passwordQuestion)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.passwordQuestion)
+            @Html.ValidationMessageFor(model => model.userInfo.passwordQuestion)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.userInfo.passwordAnswer)
+        
+        </th><td>
+            @Html.EditorFor(model => model.userInfo.passwordAnswer)
+            @Html.ValidationMessageFor(model => model.userInfo.passwordAnswer)
+        </td></tr>
+        <tr><th>
+            User's @Html.LabelFor(model => model.userInfo.password)
+        
+        </th><td>
+            @Html.PasswordFor(model => model.userInfo.password)
+            @Html.ValidationMessageFor(model => model.userInfo.password)
+        </td></tr>
+        <tr><td>Change User's Question and Answer</td><td><input type="submit" name="submitButton" value="ChangeUsersQuestionAndAnswer" /> </td></tr>
+        </table>
+    </fieldset>
+
+<br /><br />
+<table class="tblAllBorders">
+        <tr><th colspan="2">Admin Reset User's password</th></tr>
+        <tr>
+        <td><input type="submit" name="submitButton" value="AdminReset" onclick="if(!confirm('This action will delete the old user password and create a fresh user with specified password. Are you sure you would like to proceed?')){return false;}" /></td>
+        </tr>
+        </table>
+    <br /><br />
+    <table class="tblAllBorders">
+        <tr><th colspan="2">Destroy All this User's Information Completely:</th></tr>
+        <tr>
+    <td><input type="submit" name="submitButton" value="Destroy" onclick="if(!confirm('Please be very careful. This action will DESTROY entire user information permanently. Are you sure you would like to proceed?')){return false;}" /></td>
+    </tr></table>
+}
+        <br /><br />
+
+         <table class="tblAllBorders">
+<tr><th>User Roles Names</th><th></th></tr>
+@for (int count1 = 0; count1 <= Model.allRoles.Length - 1; count1++)
+{
+    if (Model.userInfo.roles.Contains(Model.allRoles[count1]))
+    {
+        using (Html.BeginForm("RemoveUserRole", "Admin", FormMethod.Post))
+        {<tr><td>@Html.Hidden("hdnUsrName", Model.userInfo.name) @Html.Hidden("hdnUserKy", Model.userInfo.id) @Html.Hidden("hdnRoleNm", Model.allRoles[count1]) @Model.allRoles[count1]</td><td style="background-color:Red"><input type="submit" name="removeRole" value="Remove" /></td></tr>}
+    }
+    else
+    {
+        using (Html.BeginForm("AddUserRole", "Admin", FormMethod.Post))
+        {<tr><td>@Html.Hidden("hdnUsrName", Model.userInfo.name) @Html.Hidden("hdnUserKy", Model.userInfo.id) @Html.Hidden("hdnRoleNm", Model.allRoles[count1]) @Model.allRoles[count1]</td><td style="background-color:Green"><input type="submit" name="addRole" value="Add" /></td></tr>}
+    }
+}
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Users", "Admin")
+</div>

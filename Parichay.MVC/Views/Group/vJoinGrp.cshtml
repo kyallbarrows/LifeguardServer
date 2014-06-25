@@ -1,0 +1,79 @@
+﻿@model Parichay.Data.Entity.MemberGroupmembers
+
+@{
+    Layout = null;
+    }
+
+@using (Html.BeginForm("JoinGroup","Group",FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+    <table class="tblAllBorders">
+        <tr><th colspan="2"><legend>Join Group Options</legend>
+        @Html.HiddenFor(m=>m.MemberDetails.Id)
+        @Html.HiddenFor(m=>m.Group.Id)</th></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Notifyonpending)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bNotifyonpending)
+            @Html.ValidationMessageFor(model => model.Notifyonpending)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bStatus)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Notifyonjoin)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bNotifyonjoin)
+            @Html.ValidationMessageFor(model => model.Notifyonjoin)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Notifyonreply)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bNotifyonreply)
+            @Html.ValidationMessageFor(model => model.Notifyonreply)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Notifyonmessage)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bNotifyonmessage)
+            @Html.ValidationMessageFor(model => model.Notifyonmessage)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Role)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bRole)
+            @Html.ValidationMessageFor(model => model.Role)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Notifyonleave)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bNotifyonleave)
+            @Html.ValidationMessageFor(model => model.Notifyonleave)
+        </div></td></tr>
+        <tr><th colspan="2"> <p>
+            <input type="submit" value="Create" />
+        </p></th></tr>
+        
+        </table>
+    </fieldset>
+}
+
+<div>
+   <a href="#" onclick="$('#GJDiv@(Model.Group.Id)').dialog('close')">Close</a>
+</div>

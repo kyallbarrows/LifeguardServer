@@ -1,0 +1,90 @@
+﻿@model IList<Parichay.Data.Entity.MemberGroupmessages>
+
+
+@if ((Model != null) && (Model.Count != 0))
+ {
+     <div class="cmtMainBox">
+     <div class="cmtHeading"><span>Group Messages:</span></div>
+     @foreach (var item in Model)
+     {
+         @Html.Partial("grpMsg",item)
+           
+     }
+     </div>
+ } @*
+<br /><br />
+<table class="tblAllBorders">
+<tr><td>
+
+    <div class="display-label">Imagefilename</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Imagefilename)
+    </div>
+
+    <div class="display-label">Createdon</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Createdon)
+    </div>
+
+    <div class="display-label">Parentid</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parentid)
+    </div>
+
+    <div class="display-label">Source</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Source)
+    </div>
+
+    <div class="display-label">Modifiedon</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modifiedon)
+    </div>
+
+    <div class="display-label">Type</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">Isprivate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Isprivate)
+    </div>
+
+    <div class="display-label">Text</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Text)
+    </div>
+
+    <div class="display-label">Thumbnailfilename</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Thumbnailfilename)
+    </div>
+
+    <div class="display-label">PostedAgo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostedAgo)
+    </div>
+
+    <div class="display-label">ModifiedAgo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ModifiedAgo)
+    </div>
+
+    <div class="display-label">Html</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Html)
+    </div>
+
+    <div class="display-label">ChildrenCount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChildrenCount)
+    </div>
+</td></tr>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+*@

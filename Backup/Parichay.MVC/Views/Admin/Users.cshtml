@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Parichay.MVC.Models.UsersModel>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ @Html.Partial("pg",Model.Count())
+@Html.Partial("lstUsers",Model)

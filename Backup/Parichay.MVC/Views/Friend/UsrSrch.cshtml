@@ -1,0 +1,43 @@
+﻿@model System.Collections.IList
+       
+       @if ((Model != null) && (Model.Count != 0))
+       {
+<table>
+    <tr>
+        <th>
+            Name(Add Friend)
+        </th>
+        <th>
+            Institute
+        </th>
+        <th>Dept.</th>
+    </tr>
+
+@foreach (Parichay.Data.Entity.MemberDetails item in Model)
+{
+    if (item != null)
+    {
+    <tr>
+    <td>
+    
+    <div id="FRDiv@(item.Id)"></div>
+           @if (item.PicId != 0)
+           {<img src="@Url.Action("Avatar", "Media", new { id = item.PicId })" alt="" /><br />} 
+   @if((int)ViewBag.LoggedInUserKey!=item.Id){
+    @Html.ActionLink("Request Friend", "VRequest","Connect",new { id = (item.Id),tId=(int)ViewBag.LoggedInUserKey, type=(int)Parichay.AppConstants.RequestTypes.Friend},null)}
+    </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.Givennm)
+        </td>
+        <td> @Html.DisplayFor(modelItem => item.Institute) </td>
+    </tr>
+    }
+}
+
+</table>
+       }
+       else
+       {
+           <p style="font-weight:bold; font-size:larger; color:Red;">User with requested e-mail is not signed up. Please  @Html.ActionLink("Click Here!", "Invite", "Connect", new { type = Parichay.AppConstants.InviteTypes.Friend }, null) to invite.</p>           
+       }

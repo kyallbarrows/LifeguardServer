@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+    IList<Parichay.Data.Entity.MemberInvitations> myInvites = ViewBag.myInvites;
+    IList<Parichay.Data.Entity.MemberRequests> myRequests = ViewBag.myRequests;
+}
+
+<fieldset><legend><h2>Invitations &amp; Requests</h2></legend>
+@if ((myInvites != null) && (myInvites.Count != 0))
+{
+    <br />
+@Html.Partial("BO/MyInvites", myInvites)
+<br />
+}
+
+@if ((myRequests != null) && (myRequests.Count != 0))
+{
+    <br />
+    @Html.Partial("BO/MyRequests", myRequests)
+    <br />
+}
+</fieldset>
+
+<br />
+Back to @Html.ActionLink("Alerts","Index","Alert")

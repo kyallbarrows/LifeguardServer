@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+<legend><h2>Admin Home</h2></legend>
+<ul>
+<li>@Html.ActionLink("Users", "Users", "Admin")</li>
+       <li>@Html.ActionLink("Roles", "EditRoles", "Admin")</li>
+       <li>@Html.ActionLink("Permissions", "Permissions", "Admin")</li>
+       <li>@Html.ActionLink("System Logs", "SystemLogs", "Admin")</li>
+</ul>
+</fieldset>
+
+

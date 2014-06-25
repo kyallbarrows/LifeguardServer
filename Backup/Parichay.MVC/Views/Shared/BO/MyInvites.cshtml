@@ -1,0 +1,20 @@
+﻿@model IList<Parichay.Data.Entity.MemberInvitations>
+
+<table class="tblAllBorders"  style="width:320px;">
+<tr><th>Invitations:</th></tr>
+<tr><td>
+    @foreach (var itm in Model)
+    {
+        <ul class="bullet-arrow">
+        @if (itm.Senderid.Id!=((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey)
+        {
+         <li> You've received an invitation. Click @Html.ActionLink("Here", "AckInvite","Connect", new { id = itm.Guid },null) to respond.  </li>
+        }
+        else
+        {
+        <li> You've sent an inivitation. Click @Html.ActionLink("Here", "AckInvite","Connect", new { id = itm.Guid },null) to view it.  </li>
+        }
+        </ul>
+    }
+    </td></tr>
+</table>

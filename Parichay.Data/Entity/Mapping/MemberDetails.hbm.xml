@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberDetails, Parichay.Data" table="member_details" optimistic-lock="dirty" dynamic-update="true">
+
+<id name="Id" column="P_UserId" type="System.Int32">
+  <generator class="assigned"></generator>
+</id>
+<version name="Version"
+                  type="timestamp"
+                  column="VERSION"
+                  access="nosetter.pascalcase-underscore" />
+
+  <!--<property name="PUserid" column="P_UserId" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>-->
+  <property name="PEmail" column="P_EMAIL" access="field.pascalcase-underscore" not-null="true" type="System.String"  insert="true" update="true"/>
+<property name="SEmail" column="S_EMAIL" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Surnm" column="SURNM" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="PostalC" column="POSTAL_C" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="HphoneN" column="HPHONE_N" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Institute" column="INSTITUTE" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="TelN" column="TEL_N" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Nicknm" column="NICKNM" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="GenderC" column="GENDER_C" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Addr" column="ADDR" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="CtryC" column="CTRY_C" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="Givennm" column="GIVENNM" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="TitleC" column="TITLE_C" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+<property name="PicId" column="PicId" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+<property name="ShowPrvInfo" column="ShowPrvInfo" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+</class>
+
+  <!--
+        Queries used for support of base provider logic, which is assumes relationships are for a single
+        web application. Therefore, in cases where lists are the result they are assumed for a given
+        application identifier.
+    -->
+  <query name="MemberDetails.ById">
+    <![CDATA[
+             from MemberDetails as MemberDetails
+            where MemberDetails.Id = ?
+        ]]>
+  </query>
+  <query name="MemberDetails.ByEmail">
+    <![CDATA[
+             from MemberDetails as MemberDetails
+            where MemberDetails.PEmail = ?
+        ]]>
+  </query>
+  <query name="MemberDetails.InfoById">
+    <![CDATA[
+             select m.Id, m.Givennm, m.Institute, m.PicId from MemberDetails as m
+            where m.Id = ?
+        ]]>
+  </query>
+  <query name="MemberDetails.InfoByEmail">
+    <![CDATA[
+             select m.Id, m.Givennm, m.Institute, m.PicId from MemberDetails as m
+            where m.PEmail like ?
+        ]]>
+  </query>
+  <query name="MemberDetails.FindInfoByName">
+    <![CDATA[
+             select m.Id, m.Givennm, m.Institute, m.PicId from MemberDetails as m
+            where m.Givennm like ?
+            or m.Surnm like ?
+        ]]>
+  </query>
+  <query name="MemberDetails.FindInfoByIds">
+    <![CDATA[
+             select m.Id, m.Givennm, m.Institute, m.PicId from MemberDetails as m
+            where m.Id IN (:Ids)
+        ]]>
+  </query>
+</hibernate-mapping>

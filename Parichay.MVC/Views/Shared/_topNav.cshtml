@@ -1,0 +1,30 @@
+﻿<ul>              
+      @if (HttpContext.Current.User.Identity.IsAuthenticated)
+         { 
+          <li>@Html.ActionLink("Home","Index","Account")</li>       
+          <li>@Html.ActionLink("Messages", "Index", "Message")</li>
+          <li>@Html.ActionLink("Friends", "Index", "Friend")</li>
+          <li>@Html.ActionLink("Groups", "Index", "Group")</li>
+          <li>@Html.ActionLink("My Uploads", "Index", "Media")</li>  
+          <li>@Html.ActionLink("Notices", "Index", "Alert")
+          <ul><li>@Html.ActionLink("Requests & Invitations", "Index", "Connect")</li></ul>
+          </li>  
+             if (((RolePrincipal)Context.User).GetRoles().Contains("Admin",StringComparer.InvariantCultureIgnoreCase))
+             {
+         <li>@Html.ActionLink("Admin", "Index", "Admin")
+         <ul>
+                <li>@Html.ActionLink("Users", "Users", "Admin")</li>
+       <li>@Html.ActionLink("Roles", "EditRoles", "Admin")</li>
+       <li>@Html.ActionLink("Permissions", "Permissions", "Admin")</li>
+       <li>@Html.ActionLink("System Logs", "SystemLogs", "Admin")</li>
+         </ul>
+          </li>
+            }
+         }
+      else
+      {
+      <li>@Html.ActionLink("Home", "Index", "Home")</li>
+     <li> @Html.ActionLink("Log On", "LogOn", "Account")</li>
+     <li>@Html.ActionLink("New User", "Register", "Account")</li>          
+      }
+                </ul>

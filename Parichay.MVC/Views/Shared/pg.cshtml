@@ -1,0 +1,9 @@
+﻿@model System.Int32
+
+@{
+    int pg = 0;
+    bool nxtFlag= Int32.TryParse(Request.QueryString["p"],out pg);
+}
+<b>Page:</b> @if(pg>0){@Html.ActionLink("<<Prev", ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), new { @p = pg -1 })}else{<span><b>&lt;&lt;Prev</b></span>}&nbsp;|&nbsp; @Html.ActionLink("First",ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString()) &nbsp;|&nbsp; @if ((pg >= 0) && (Model != 0))
+                                                                                                                                                                                                                                                                                                                           {@Html.ActionLink("Next>>", ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), new { @p = pg + 1 })}
+                                                                                                                                                                                                                                                                                                                           else {<span><b>Next&gt;&gt;</b></span> }

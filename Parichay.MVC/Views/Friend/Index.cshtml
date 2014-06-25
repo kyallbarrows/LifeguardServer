@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Parichay.Data.Entity.MemberFriends>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<fieldset>
+<legend><h2>My Friends</h2></legend>
+<table class="tblAllBorders">
+    <tr>
+    <th>
+    Friend's Info
+    </th>
+        <th>
+            Createdon
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+    <td>
+    <div>
+     <ul class="bullet-arrow">
+           <li><img src="@Url.Action("Avatar", "Media", new { id = item.Friendid.PicId })" alt="" /></li>
+           <li>Name: @Html.DisplayFor(model => item.Friendid.Givennm)</li>
+           <li>Institute: @Html.DisplayFor(model => item.Friendid.Institute)</li> 
+           <li>Dept: @Html.DisplayFor(model => item.Friendid.Dept)</li>
+           <li>@Html.ActionLink("View Profile","Index","Account",new{id=item.Friendid.Id},null)</li>
+            </ul>
+
+    @Html.HiddenFor(m=>item.MemberDetails.Id)
+    @Html.HiddenFor(m=>item.Friendid.Id)
+    </div>
+             
+    </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Createdon)
+        </td>
+        <td>@using(Html.BeginForm("RemoveFriend", "Friend", FormMethod.Post)){<input id="friendId" type="hidden" name="friendId" value="@item.Friendid.Id" /><input type="submit" value="Del" class="button" onclick="if(!confirm('This action will remove this user from your friends list. Would you like to proceed?')){return false;}" />}</td>
+    </tr>
+}
+
+</table>
+</fieldset>
+
+
+<p>
+    @Html.ActionLink("Find a Friend", "Find")
+</p>
+

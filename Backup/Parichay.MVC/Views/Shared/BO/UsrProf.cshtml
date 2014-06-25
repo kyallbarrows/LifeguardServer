@@ -1,0 +1,98 @@
+﻿@model Parichay.Data.Entity.MemberDetails
+
+<table class="tblAllBorders">
+        <tr><th>Avatar:</th>
+        </tr><tr>
+        <td><img src="@Url.Action("Avatar", "Media", new { id = Model.PicId })" alt="" /></td></tr>
+    <tr><th>@Html.LabelFor(model=>model.Nicknm)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.Nicknm)
+    </td></tr>
+
+    <tr><th>@Html.LabelFor(model=>model.Surnm)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.Surnm)
+    </td></tr>
+
+    <tr><th>@Html.LabelFor(model=>model.Givennm)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.Givennm)
+    </td></tr>
+
+    <tr><th>@Html.LabelFor(model=>model.TitleC)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.TitleC)
+    </td></tr>
+
+    <tr><th>@Html.LabelFor(model=>model.GenderC)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.GenderC)
+    </td></tr>
+
+        <tr><th>@Html.LabelFor(model=>model.Institute)
+    </th>
+    </tr><tr>
+    <td>
+        @Html.DisplayFor(model => model.Institute)
+    </td></tr>
+        <tr><th>@Html.LabelFor(model=>model.CtryC)
+    </th>
+    </tr><tr>
+    <td>
+       @((!string.IsNullOrEmpty(Model.CtryC))?Parichay.AppConstants.lstCountries[Model.CtryC]:"-NA-")
+    </td></tr>
+    @if((((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey==Model.Id)||(Model.bShowPrvInfo))
+    {
+        <tr><th class="alt">@Html.LabelFor(model => model.PEmail)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.PEmail)
+    </td></tr>
+
+    <tr><th class="alt">@Html.LabelFor(model => model.SEmail)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.SEmail)
+    </td></tr>
+
+    <tr><th class="alt">@Html.LabelFor(model => model.Addr)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.Addr)
+    </td></tr>
+
+    <tr><th class="alt">@Html.LabelFor(model => model.PostalC)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.PostalC)
+    </td></tr>
+
+    <tr><th class="alt">@Html.LabelFor(model => model.TelN)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.TelN)
+    </td></tr>
+
+    <tr><th class="alt">@Html.LabelFor(model => model.HphoneN)
+    </th>
+    </tr><tr>
+    <td class="alt">
+        @Html.DisplayFor(model => model.HphoneN)
+    </td></tr>
+    }
+    </table>

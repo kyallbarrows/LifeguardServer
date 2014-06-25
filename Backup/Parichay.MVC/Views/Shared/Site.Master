@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/global-1column.dwt" codeOutsideHTMLIsLocked="false" -->
+<head id="Head1" runat="server">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" />Custom Security Permissions System</title>
+<!-- InstanceEndEditable -->
+<link href="../../Content/Styles/Site.css" rel="stylesheet" type="text/css" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			&nbsp;
+		</div>
+        <div id="hdrLinks" >
+         <% Html.RenderPartial("LogOnUserControl"); %>
+        </div>
+        
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+	 <% Html.RenderPartial("_topNav"); %>
+
+  </div>
+	<!-- end #menu -->
+	<div id="page">
+	<div id="page-bgtop">
+	<div id="page-bgbtm">
+		
+        <div id="content">
+        <div id="box">
+                                <!--- box border -->
+                                <a id="A1" name="top"></a>
+                                <div id="lb">
+                                        <div id="rb">
+                                                <div id="bb">
+
+                                                        <div id="blc">
+                                                                <div id="brc">
+                                                                        <div id="tb">
+                                                                                <div id="tlc">
+                                                                                        <div id="trc"><!-- InstanceBeginEditable name="mainContent" -->
+        <asp:Label id="lblErrorMasterPg" Visible="false" runat="server"></asp:Label>
+         <% if (TempData["message"] != null) { %>
+    <p style="color:Red;font-weight:bold"><%= Html.Encode(TempData["message"]) %></p>
+  <% } %>
+       <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+        <asp:Literal runat="server" ID="SecurityDisclosure"></asp:Literal>
+	<br />
+	<br />
+        &nbsp;
+    
+		        
+
+		<!-- InstanceEndEditable -->
+                                                                                        
+                                                                                  </div>
+                                                                                </div>
+                                                                          </div>
+                                                                    </div>
+                                                              </div>
+                                                       </div>
+                                               </div>
+                                        </div>
+					</div>
+
+<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #content -->
+        <div style="clear:both">&nbsp;</div>
+	</div>
+	</div>
+	</div>
+	<!-- end #page -->
+</div>
+	<div id="footer">
+		<p>Copyright (c) 2011 Parichay. All rights reserved.</p>
+	</div>
+	<!-- end #footer -->
+</body>
+<!-- InstanceEnd --></html>

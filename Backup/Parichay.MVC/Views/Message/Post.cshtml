@@ -1,0 +1,131 @@
+﻿@model Parichay.Data.Entity.MemberMessage
+
+@{
+
+}
+
+@using (Html.BeginForm("AddMessage","Message")) {
+    @Html.ValidationSummary(true)
+
+    <table class="tblAllBorders">
+        <tr><th>Post Message:</th></tr>
+        <tr><td><div class="editor-field">
+
+       @* @if (Url.RequestContext.RouteData.Values["id"] != null)
+        {
+            Html.RenderAction("MsgDtl", new { id = Url.RequestContext.RouteData.Values["id"] });
+        }*@
+
+            @Html.TextAreaFor(model => model.Text, 2, 58, null)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div></td></tr>
+        <tr>
+        <td style="text-align:right"><input type="submit" value="Post" /></td>
+        </tr>
+        </table>
+    
+@*    <fieldset>
+        <legend>MessageView</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GroupId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GroupId)
+            @Html.ValidationMessageFor(model => model.GroupId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GroupUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GroupUrl)
+            @Html.ValidationMessageFor(model => model.GroupUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ParentId)
+            @Html.ValidationMessageFor(model => model.ParentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ParentName)
+            @Html.ValidationMessageFor(model => model.ParentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Createdon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Createdon)
+            @Html.ValidationMessageFor(model => model.Createdon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Modifiedon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Modifiedon)
+            @Html.ValidationMessageFor(model => model.Modifiedon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChildrenCount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChildrenCount)
+            @Html.ValidationMessageFor(model => model.ChildrenCount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Isprivate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Isprivate)
+            @Html.ValidationMessageFor(model => model.Isprivate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Imagefilename)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Imagefilename)
+            @Html.ValidationMessageFor(model => model.Imagefilename)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Source)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Source)
+            @Html.ValidationMessageFor(model => model.Source)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Thumbnailfilename)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Thumbnailfilename)
+            @Html.ValidationMessageFor(model => model.Thumbnailfilename)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>*@
+}
+

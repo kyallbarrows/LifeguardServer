@@ -1,0 +1,144 @@
+﻿@model Parichay.Data.Entity.MemberDetails
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<table class="tblAllBorders">
+<tr><th colspan="2">Avatar Image</th></tr>
+<tr><th>  <img src="@Url.Action("Avatar", "Media", new { id = Model.PicId })" alt="" />  @using (Html.BeginForm("DeleteAvatar", "Media", FormMethod.Post)){ <input type="submit" value="Delete Avatar" />} </th><td>
+        <div id="avtar-dialog" style="display:none" title="Upload files">        
+    @using (Html.BeginForm("AddAvatar", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {<br />
+        <p><input type="file" id="fileUpload" name="fileUpload" size="23"/></p><br />
+        <p><input type="submit" value="Upload file" /></p>        
+     } 
+</div>
+<a href="#" onclick="$('#avtar-dialog').css({display:'block'}).dialog({modal:true}); return false">Change Avatar</a>
+        </td></tr>
+</table>
+<br />
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Member Details</legend>
+        @Html.HiddenFor(m=>Model.Id)
+        @Html.HiddenFor(m=>Model.PEmail)
+        @Html.HiddenFor(m=>Model.PicId)
+        <table class="tblAllBorders">
+
+        <tr><th>
+            @Html.LabelFor(model => model.Nicknm)
+        
+        </th><td>
+            @Html.EditorFor(model => model.Nicknm)
+            @Html.ValidationMessageFor(model => model.Nicknm)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.Surnm)
+        
+        </th><td>
+            @Html.EditorFor(model => model.Surnm)
+            @Html.ValidationMessageFor(model => model.Surnm)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.Givennm)
+        
+        </th><td>
+            @Html.EditorFor(model => model.Givennm)
+            @Html.ValidationMessageFor(model => model.Givennm)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.TitleC)
+        
+        </th><td>
+            @Html.DropDownListFor(model => model.TitleC, new SelectList(Model.lstTitles, "Key", "Value", Model.TitleC),"--Select--")
+            @Html.ValidationMessageFor(model => model.TitleC)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.GenderC)
+        
+        </th><td>
+            @Html.DropDownListFor(model => model.GenderC,new SelectList(Model.lstGender,"Key","Value",Model.GenderC))
+            @Html.ValidationMessageFor(model => model.GenderC)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.Institute)
+        
+        </th><td>
+            @Html.EditorFor(model => model.Institute)
+            @Html.ValidationMessageFor(model => model.Institute)
+        </td></tr>
+
+                <tr><th class="alt">
+            @Html.LabelFor(model => model.PEmail)
+        
+        </th><td class="alt">
+            @Html.DisplayFor(model => model.PEmail)
+        </td></tr>
+        <tr><th class="alt">
+            @Html.LabelFor(model => model.SEmail)
+        
+        </th><td class="alt">
+            @Html.EditorFor(model => model.SEmail)
+            @Html.ValidationMessageFor(model => model.SEmail)
+        </td></tr>
+        <tr><th class="alt">
+            @Html.LabelFor(model => model.Addr)
+        
+        </th><td class="alt">
+            @Html.EditorFor(model => model.Addr)
+            @Html.ValidationMessageFor(model => model.Addr)
+        </td></tr>
+        <tr><th class="alt">
+            @Html.LabelFor(model => model.PostalC)
+        
+        </th><td class="alt">
+            @Html.EditorFor(model => model.PostalC)
+            @Html.ValidationMessageFor(model => model.PostalC)
+        </td></tr>
+        <tr><th class="alt">
+            @Html.LabelFor(model => model.TelN)
+        
+        </th><td class="alt">
+            @Html.EditorFor(model => model.TelN)
+            @Html.ValidationMessageFor(model => model.TelN)
+        </td></tr>
+        <tr><th class="alt">
+            @Html.LabelFor(model => model.HphoneN)
+        
+        </th><td class="alt">
+            @Html.EditorFor(model => model.HphoneN)
+            @Html.ValidationMessageFor(model => model.HphoneN)
+        </td></tr>
+
+        <tr><th>
+            @Html.LabelFor(model => model.CtryC)
+        
+        </th><td>
+            @Html.DropDownListFor(model => model.CtryC, new SelectList(Parichay.AppConstants.lstCountries,"Key","Value",Model.CtryC),"--Select--")
+            @Html.ValidationMessageFor(model => model.CtryC)
+        </td></tr>
+                <tr><td colspan="2">
+            @Html.CheckBoxFor(model => model.bShowPrvInfo)
+        @Html.LabelFor(model=>model.bShowPrvInfo) <br />(<span style="color:#ff0000">*fields marked in red above are contact info.</span>)
+            @Html.ValidationMessageFor(model => model.bShowPrvInfo)
+        </td></tr>
+        <tr><td colspan="2" style="text-align:right"><input type="submit" value="Save" /></td></tr>
+        </table>
+
+    </fieldset>
+}
+<br /><br />
+    @Html.ActionLink("Back to Home", "Index")
+

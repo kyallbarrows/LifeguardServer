@@ -1,0 +1,32 @@
+﻿@model Parichay.Data.Entity.MemberGroupmessages
+
+<div class="box">
+         <div class="cmtBox"> <div class="cmt">
+         <span class="name">@Model.Sender.Givennm</span><span class="location">:</span><span class="dt">@Model.CreatedAgo</span>
+        <span class="cmtText">@Model.Text </span>  </div> 
+         <div class="cmtopt">
+           @if (Context.User.Identity.IsAuthenticated)
+                     {
+                        <div><a href='@Url.Action("Reply","Group", new { id = (Model.Parent==null)?Model.Id:Model.Parent.Id, rId = Model.Sender.Id, gId=Model.Group.Id })' >Reply</a></div>
+                     } 
+
+         @if (Context.User.Identity.IsAuthenticated && Model.Children.Count == 0 &&
+                 ((Parichay.MVC.Models.CustomIdentity)Context.User.Identity).UserKey == Model.Sender.Id)
+                {
+                <div>
+         @Html.ActionLink("Delete", "RemoveMessage","Group", new { id = Model.Id },null)                
+                </div>
+                    
+                }
+         @if ((Model.Children != null)&&(Model.Children.Count>0))
+                    {
+                     <div><a href="#" class="showreply" data-name='child@(Model.Id)_s@(Model.Sender.Id)'>Replies(@Model.Children.Count().ToString())</a></div>
+                    }
+         </div>
+         </div>
+         </div>
+         <div id='child@(Model.Id)_s@(Model.Sender.Id)' class="rplyBox">
+         @foreach (var ch in Model.Children)
+         {
+         @Html.Partial("grpMsg", ch);
+         }</div>

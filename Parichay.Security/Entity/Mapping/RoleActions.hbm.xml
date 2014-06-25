@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Security.Entity.roleactions, Parichay.Security" table="aspnet_roleactions" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<property name="PermissionType" column="PermissionType" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+<many-to-one name="Role"  access="field.pascalcase-underscore" not-null="false" outer-join="auto" insert="true" update="true">
+	<column name="RoleId"/>
+</many-to-one>
+<many-to-one name="User"  access="field.pascalcase-underscore" not-null="false" outer-join="auto" insert="true" update="true">
+	<column name="UserId"/>
+</many-to-one>
+<many-to-one name="Action"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+	<column name="ActionId"/>
+</many-to-one>
+
+
+</class>
+    <!--
+        Queries used for support of base provider logic, which is assumes relationships are for a single
+        web application. Therefore, all these queries expect an application identifier to be specified.
+    -->
+    <query name="roleactions.byId">
+        <![CDATA[
+               FROM roleactions as ra
+               where ra.Id = ?
+              ]]>
+    </query>
+
+    <query name="roleactions.FindAll">
+        <![CDATA[
+               FROM roleactions
+              ]]>
+    </query>
+    <query name="roleactions.byRoleId">
+        <![CDATA[
+             from roleactions as ra
+            where ra.Role.Id = ?
+        ]]>
+    </query>
+
+    <query name="roleactions.byActionId">
+        <![CDATA[
+             from roleactions as ra
+            where ra.Action.Id = ?
+        ]]>
+    </query>
+
+    <query name="roleactions.byControllerName">
+        <![CDATA[
+             from roleactions as ra
+            where ra.Action.ControllerName = ?
+        ]]>
+    </query>
+
+    <query name="roleactions.byControllerAndActionNames">
+        <![CDATA[
+             from roleactions as roleactions
+            where roleactions.Action.ControllerName = ?
+            and roleactions.Action.ActionName = ?
+        ]]>
+    </query>
+
+    <query name="roleactions.byRolename">
+        <![CDATA[
+             from roleactions as ra
+            where ra.Role.LoweredName = ?
+        ]]>
+    </query>
+
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Parichay.Security"
+                   namespace="Parichay.Security.Entity">
+    <!--
+        NOTE: lazy="false" was added to fix a problem with NHibernate 1.2 Beta 2 where the property
+              Id is expected to be virtual. This seems to be because by default 1.2 assumes all objects
+              are proxy-ready.
+    -->
+    <class name="ApplicationUser" table="aspnet_applicationuser" lazy="false">
+        <composite-id>
+            <key-many-to-one name="Application" column="ApplicationId" />
+            <key-many-to-one name="User" column="UserId" />
+        </composite-id>
+    </class>
+
+    <!--
+        Queries used for support of base provider logic, which is assumes relationships are for a single
+        web application. Therefore, in cases where lists are the result they are assumed for a given
+        application identifier.
+    -->
+    <query name="ApplicationUser.GetUsersOnline">
+        <![CDATA[
+              from ApplicationUser as appUser
+             where appUser.Application.Id = ?
+               and appUser.User.LastActivityDate > ?
+        ]]>
+    </query>
+    <query name="ApplicationUser.FindAll">
+        <![CDATA[
+              from ApplicationUser as appUser
+             where appUser.Application.Id = ?
+             order by appUser.User.CreationDate desc
+        ]]>
+    </query>
+    <query name="ApplicationUser.FindByLoweredName">
+        <![CDATA[
+              from ApplicationUser as appUser
+             where appUser.Application.Id = ?
+               and appUser.User.LoweredName like ?
+        ]]>
+    </query>
+    <query name="ApplicationUser.FindByLoweredEmail">
+        <![CDATA[
+              from ApplicationUser as appUser
+             where appUser.Application.Id = ?
+               and appUser.User.LoweredEmail like ?
+        ]]>
+    </query>
+</hibernate-mapping>

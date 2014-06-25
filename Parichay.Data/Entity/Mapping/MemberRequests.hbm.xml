@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberRequests, Parichay.Data" table="member_requests" >
+
+<id name="Id" column="Id" type="System.Int32" unsaved-value="null"><generator class="native"/></id>
+
+<version name="Version" column="Version" access="field.pascalcase-underscore" type="System.DateTime" />
+
+  <property name="Guid" column="Guid" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+  <property name="Createdate" column="CreateDate" access="field.pascalcase-underscore" not-null="false" type="System.DateTime"  insert="true" update="true"/>
+  <property name="Type" column="Type" access="field.pascalcase-underscore" not-null="true" type="System.Int32"  insert="true" update="true"/>
+  <property name="TargetPageid" column="Target_PageId" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+  <property name="Status" column="Status" access="field.pascalcase-underscore" not-null="false" type="System.Int32"  insert="true" update="true"/>
+
+  <many-to-one name="Senderid"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="SenderId"/>
+  </many-to-one>
+  <many-to-one name="Recipientid"  access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="RecipientId"/>
+  </many-to-one>
+</class>
+</hibernate-mapping>

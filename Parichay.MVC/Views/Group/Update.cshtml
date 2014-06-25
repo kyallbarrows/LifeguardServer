@@ -1,0 +1,70 @@
+﻿@model Parichay.Data.Entity.MemberGroups
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit User Group</legend>
+
+        <table class="tblAllBorders">
+               <tr><th><div class="editor-label">
+               @Html.Hidden("Ownerid",(((Parichay.MVC.Models.CustomIdentity)User.Identity).UserKey))
+            @Html.LabelFor(model => model.Name)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.Url)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.Url)
+            @Html.ValidationMessageFor(model => model.Url)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.About)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.EditorFor(model => model.About)
+            @Html.ValidationMessageFor(model => model.About)
+        </div></td></tr>
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bIsautoapprove)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bIsautoapprove)
+            @Html.ValidationMessageFor(model => model.bIsautoapprove)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bIsVisible)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bIsVisible)
+            @Html.ValidationMessageFor(model => model.bIsVisible)
+        </div></td></tr>
+
+        <tr><th><div class="editor-label">
+            @Html.LabelFor(model => model.bCanmembersinvite)
+        </div>
+        </th><td><div class="editor-field">
+            @Html.CheckBoxFor(model => model.bCanmembersinvite)
+            @Html.ValidationMessageFor(model => model.bCanmembersinvite)
+        </div></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Save" /></td></tr>
+        </table>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

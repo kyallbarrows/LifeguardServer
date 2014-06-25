@@ -1,0 +1,42 @@
+﻿   @model IList<Parichay.Data.Entity.MemberAlert>
+   @{
+               Parichay.AppConstants.ReturnContollerHomes rUrl = Parichay.AppConstants.ReturnContollerHomes.Message;
+                 bool flat = Enum.TryParse<Parichay.AppConstants.ReturnContollerHomes>(Url.RequestContext.RouteData.Values["controller"].ToString(),out rUrl);
+}
+    @if((Model!=null)&&(Model.Count != 0))
+    {
+        <table class="tblAllBorders">
+    <tr>
+        <th>
+            Notifications (@Html.ActionLink("Show All","Index", "Alert",new{id=0,v=1},null))
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        
+        
+        <td>
+        <ul class="bullet-arrow"><li>
+                 @Html.Raw(item.Message) <span class="dt">(@Html.DisplayFor(modelItem => item.CreatedAgo))</span>
+        </li>
+
+        </ul>
+        </td>
+        <td>
+           @if(item.Ishidden==0)
+           {
+               @Html.ActionLink("Hide", "Hide","Alert", new { id = item.Id, rUrl=(int)rUrl },null)
+           }
+           else
+           {
+               @Html.ActionLink("Unhide", "Hide", "Alert", new { id = item.Id, rUrl = (int)rUrl }, null)              
+           }
+           
+           | @Html.ActionLink("Delete", "Delete", "Alert", new { id = item.Id, rUrl = (int)rUrl }, null)
+        </td>
+    </tr>
+}
+</table>
+    }

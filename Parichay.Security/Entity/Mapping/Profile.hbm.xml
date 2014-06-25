@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Parichay.Security"
+                   namespace="Parichay.Security.Entity">
+  <class name="Profile" table="aspnet_profiles" lazy="false" >
+    <id name="UserId" >
+      <generator class="assigned">
+      </generator>
+    </id>
+    <property name="PropertyNames" />
+    <property name="PropertyValuesString" />
+    <property name="PropertyValuesBinary" type="BinaryBlob" />
+    <property name="LastActivityDate" />
+  </class>
+
+  <query name="Profile.ByUserId">
+    <![CDATA[
+             from Profile as p
+            where p.UserId = ?
+        ]]>
+  </query>
+  <query name="Profile.GetByLastUpdate">
+    <![CDATA[
+             from Profile as p
+             where p.LastActivityDate < ?
+        ]]>
+  </query>
+  <query name="Profile.GetAllProfiles">
+    <![CDATA[
+             from Profile as profile
+        ]]>
+  </query>
+</hibernate-mapping>

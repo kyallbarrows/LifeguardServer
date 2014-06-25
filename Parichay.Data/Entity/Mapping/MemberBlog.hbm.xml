@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+
+<class name="Parichay.Data.Entity.MemberBlog, Parichay.Data" table="member_blog" >
+  <id name="Id" column="Id" type="System.Int32" unsaved-value="null">
+    <generator class="native"/>
+  </id>
+  <version name="Version" column="Version" access="field.pascalcase-underscore" type="System.DateTime" />
+  <property name="BlogText" column="BLOG_TEXT" access="field.pascalcase-underscore" not-null="false" type="System.String"  insert="true" update="true"/>
+  <many-to-one name="PUser" access="field.pascalcase-underscore" not-null="true" outer-join="auto" insert="true" update="true">
+    <column name="P_UserId"/>
+  </many-to-one>
+</class>
+</hibernate-mapping>

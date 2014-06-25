@@ -1,0 +1,47 @@
+﻿@model Parichay.Data.Entity.MemberMessage
+           @{
+               Parichay.AppConstants.ReturnContollerHomes rUrl = Parichay.AppConstants.ReturnContollerHomes.Message;
+                 bool flat = Enum.TryParse<Parichay.AppConstants.ReturnContollerHomes>(Url.RequestContext.RouteData.Values["controller"].ToString(),out rUrl);
+}
+<div class="box">
+         <div class="cmtBox"> <div class="cmt">
+         <span class="name"><a href="#" class="openModal" data-name="prop@(Model.Id)_s@(Model.Sender.Id)">@Model.Sender.Givennm</a></span><span class="location">:</span><span class="name">@((Model.Recipient.Id==0)?"Self":Model.Recipient.Givennm.ToString())</span><span class="dt">@Model.CreatedAgo</span>
+        <span class="cmtText">
+         @if (Model.Type == 2)
+                      { 
+                    <a href='@(Model.Imagefilename)'>
+                        <img src='@(Model.Thumbnailfilename)' /></a>
+                    }
+                      else
+                      {
+                    @(Model.Text)
+                    
+                        }
+        </span><span class="replybtn">
+       
+        </span>  </div> 
+         <div class="cmtopt">
+          
+                     @if (Context.User.Identity.IsAuthenticated)
+                     {
+                        <div><a href='@Url.Action("Reply","Message", new { id = (Model.ParentId==null)?Model.Id:Model.ParentId.Id, rId = Model.Sender.Id, rUrl=(int)rUrl})' >Reply</a></div>
+                     } 
+                @if (Context.User.Identity.IsAuthenticated && Model.Children.Count == 0 &&
+                 ((Parichay.MVC.Models.CustomIdentity)Context.User.Identity).UserKey == Model.Sender.Id)
+                {
+                <div><a href='@Url.Action("Del", "Message", new { id = Model.Id ,rUrl=(int)rUrl})' >Delete</a></div>
+                    
+                }
+                  @if ((Model.Children != null)&&(Model.Children.Count>0))
+                    {
+                      <a href="#" class="showreply" data-name='child@(Model.Id)_s@(Model.Sender.Id)'>Replies(@Model.Children.Count().ToString())</a>
+                    }
+         </div>
+         </div>
+         </div>
+         <div id='child@(Model.Id)_s@(Model.Sender.Id)' class="rplyBox">
+         @foreach (var ch in Model.Children)
+         {
+         @Html.Partial("BO/msg", ch)
+         }</div>
+         <div id='prop@(Model.Id)_s@(Model.Sender.Id)' class="modalWin">@Html.Partial("BO/UsrProf", Model.Sender)</div>
